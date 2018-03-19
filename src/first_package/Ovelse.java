@@ -1,10 +1,9 @@
 package first_package;
 
-public class Ovelse {
+public abstract class Ovelse {
 
 	String navn;
-	String overlsegruppeID;
-	String PrimaryKey;
+	OvelseGruppe ovelsegruppe;
 	
 	
 	public String getNavn() {
@@ -13,17 +12,11 @@ public class Ovelse {
 	public void setNavn(String navn) {
 		this.navn = navn;
 	}
-	public String getOverlsegruppeID() {
-		return overlsegruppeID;
+	public OvelseGruppe getOvelsegruppe() {
+		return ovelsegruppe;
 	}
-	public void setOverlsegruppeID(String overlsegruppeID) {
-		this.overlsegruppeID = overlsegruppeID;
+	public void setOverlsegruppe(OvelseGruppe ovelsegruppe) {
+		this.ovelsegruppe = ovelsegruppe;
 	}
-	public String getPrimaryKey() {
-		return PrimaryKey;
-	}
-	public void setPrimaryKey(String primaryKey) {
-		PrimaryKey = primaryKey;
-	}
-
+	
 }

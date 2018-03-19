@@ -1,10 +1,11 @@
+package first_package;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 
 public class DBConnection {
 	
-	private static Connection conn;
+private static Connection conn;
 	
 	// Statisk funksjon for aa koble seg opp mot databasen.
 	
@@ -20,10 +21,6 @@ public class DBConnection {
 			System.err.println("Got an exception...");
 			System.err.println(e.getMessage());
 		}
-		return conn;
-	}
-	
-	public Connection getConnection() {
 		return conn;
 	}
 

@@ -1,11 +1,10 @@
 package first_package;
 
-import java.sql.Timestamp;
 
 public class Treningsokt {
 	
-	int treningsøktID; 
-	Timestamp datetime;
+	int treningsoktID; 
+	String date; // "yyyy-mm-dd hh-mm-ss"
 	int varighet;
 	int notatID;
 
