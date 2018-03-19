@@ -35,15 +35,14 @@ public class QueryFactory {
 		stmt.setString(2, ovelse.getBeskrivelse());
 		return stmt;
 	}
-	
-	public static PreparedStatement setOvelseMedApparat(OvelseMedApparat ovelse) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		PreparedStatement stmt = conn.prepareStatement("insert into Ovelse values (?, ?, ?)"); 
-		stmt.setString(0, ovelse.getNavn());
-		stmt.setString(1, ovelse.getOvelsegruppe().getNavn());
-		stmt.setString(2, ovelse.getApparatnavn().getNavn());
-		return stmt;
+
+	public void setOvelseMedApparat(OvelseMedApparat ovelse) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		String sql1 = String.format("insert into OvelseMedApparat values (%s, %s)", ovelse.getNavn(), ovelse.getApparatnavn().getNavn());
+		String sql2 = String.format("insert into Ovelse values (%s, %s)", ovelse.getNavn(), ovelse.getOvelsegruppe().getNavn());
+		statement.executeUpdate(sql1);
+		statement.executeUpdate(sql2);
+
 	}
-	
 	
 	
 
