@@ -41,9 +41,13 @@ public class QueryFactory {
 		statement.executeUpdate(sql1);
 		statement.executeUpdate(sql2);
 	}
-	
-	
-	
-	
 
+	public void setOvelseMedApparat(OvelseMedApparat ovelse) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		String sql1 = String.format("insert into OvelseMedApparat values (%s, %s)", ovelse.getNavn(), ovelse.getApparatnavn().getNavn());
+		String sql2 = String.format("insert into Ovelse values (%s, %s)", ovelse.getNavn(), ovelse.getOvelsegruppe().getNavn());
+		statement.executeUpdate(sql1);
+		statement.executeUpdate(sql2);
+	}
+	
+	
 }
