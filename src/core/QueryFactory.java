@@ -9,10 +9,10 @@ import java.sql.Statement;
 public class QueryFactory {
 	
 
-	private static Connection conn;
+	private Statement statement;
 	
-	public QueryFactory(Connection conn) {
-		this.conn = conn;
+	public QueryFactory(Connection conn) throws SQLException {
+		statement = conn.createStatement();
 	}
 	
 //	public static PreparedStatement setApparat(Apparat apparat) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -23,7 +23,6 @@ public class QueryFactory {
 //	}
 	
 	public void setApparat(Apparat apparat) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		Statement statement = conn.createStatement();
 		String sql = String.format("insert into Apparat values (%s, %s)", apparat.getNavn(), apparat.getBeskrivelse());
 		statement.executeUpdate(sql);
 
