@@ -1,12 +1,10 @@
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+
 
 public class DBConnection {
 	
-	private static Connection conn;
+private static Connection conn;
 	
 	// Statisk funksjon for aa koble seg opp mot databasen.
 	
@@ -24,10 +22,5 @@ public class DBConnection {
 		}
 		return conn;
 	}
-	
-	public static void main(String[] args) throws SQLException {
-		getDBConnection();
-		
-	}
-	
+
 }
