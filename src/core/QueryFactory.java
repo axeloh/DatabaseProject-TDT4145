@@ -3,6 +3,7 @@ package core;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class QueryFactory {
@@ -14,11 +15,18 @@ public class QueryFactory {
 		this.conn = conn;
 	}
 	
-	public static PreparedStatement setApparat(Apparat apparat) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		PreparedStatement stmt = conn.prepareStatement("insert into Apparat values (?, ?) ");
-		stmt.setString(0, apparat.getNavn());
-		stmt.setString(1, apparat.getBeskrivelse());
-		return stmt;
+//	public static PreparedStatement setApparat(Apparat apparat) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+//		PreparedStatement stmt = conn.prepareStatement("insert into Apparat values (?, ?) ");
+//		stmt.setString(0, apparat.getNavn());
+//		stmt.setString(1, apparat.getBeskrivelse());
+//		return stmt;
+//	}
+	
+	public void setApparat(Apparat apparat) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		Statement statement = conn.createStatement();
+		String sql = String.format("insert into Apparat values (%s, %s)", apparat.getNavn(), apparat.getBeskrivelse());
+		statement.executeUpdate(sql);
+
 	}
 	
 	public static PreparedStatement setOvelseUtenApparat(OvelseUtenApparat ovelse) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
