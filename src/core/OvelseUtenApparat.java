@@ -1,13 +1,20 @@
 package core;
 
+import java.util.List;
+
 public class OvelseUtenApparat extends Ovelse{
 	
 	String beskrivelse;
 	
-	public OvelseUtenApparat(String navn, OvelseGruppe ovelsegruppe, String beskrivelse) {
+	public OvelseUtenApparat(String navn, OvelseGruppe ovelsegruppe, String beskrivelse, List<Integer> performance) {
 		this.navn = navn;
 		this.ovelsegruppe = ovelsegruppe;
 		this.beskrivelse = beskrivelse;
+		if (performance != null) {
+			this.kilo = performance.get(0);
+			this.sets = performance.get(1);
+			this.reps = performance.get(2);
+		}
 	}
 
 	public String getBeskrivelse() {
