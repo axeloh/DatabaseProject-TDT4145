@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="showSessionsController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <ComboBox fx:id="cmbTrening" layoutX="325.0" layoutY="139.0" onAction="#handleVelgTrening" prefWidth="150.0" promptText="Velg treningsøkt" />
+            <Text layoutX="189.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 64;" text="Vis treningsøkt" />
+            <TextArea fx:id="txtInfo" layoutX="207.0" layoutY="217.0" prefHeight="281.0" prefWidth="400.0" />
+            <Button fx:id="tilbake" layoutX="207.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleTilbake" text="Tilbake" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
