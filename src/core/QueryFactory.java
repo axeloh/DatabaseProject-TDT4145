@@ -36,20 +36,12 @@ public class QueryFactory {
 //	}
 	
 	public void setOvelseUtenApparat(OvelseUtenApparat ovelse) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		String sql1 = String.format("insert into Ovelse values (%s, %s)", ovelse.getNavn(), ovelse.getOvelsegruppe());
+		String sql1 = String.format("insert into Ovelse values (%s, %s)", ovelse.getNavn(), ovelse.getOvelsegruppe().getNavn());
 		String sql2 = String.format("insert into OvelseUtenApparat values (%s, %s)", ovelse.getNavn(), ovelse.getBeskrivelse());
 		statement.executeUpdate(sql1);
 		statement.executeUpdate(sql2);
 	}
 	
-	
-	public static PreparedStatement setOvelseMedApparat(OvelseMedApparat ovelse) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		PreparedStatement stmt = conn.prepareStatement("insert into Ovelse values (?, ?, ?)"); 
-		stmt.setString(0, ovelse.getNavn());
-		stmt.setString(1, ovelse.getOvelsegruppe().getNavn());
-		stmt.setString(2, ovelse.getApparatnavn().getNavn());
-		return stmt;
-	}
 	
 	
 	
