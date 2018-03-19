@@ -1,4 +1,4 @@
-package first_package;
+package core;
 
 public class OvelseITreningsokt {
 

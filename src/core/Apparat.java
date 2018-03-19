@@ -1,13 +1,21 @@
-package first_package;
+package core;
 
-public class OvelseUtenApparat extends Ovelse{
+public class Apparat {
 	
+	String navn;
 	String beskrivelse;
 	
-	public OvelseUtenApparat(String navn, OvelseGruppe ovelsegruppe, String beskrivelse) {
+	public Apparat(String navn, String beskrivelse) {
 		this.navn = navn;
-		this.ovelsegruppe = ovelsegruppe;
 		this.beskrivelse = beskrivelse;
+	}
+
+	public String getNavn() {
+		return navn;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
 	}
 
 	public String getBeskrivelse() {
@@ -18,6 +26,6 @@ public class OvelseUtenApparat extends Ovelse{
 		this.beskrivelse = beskrivelse;
 	}
 	
-
 	
+
 }
