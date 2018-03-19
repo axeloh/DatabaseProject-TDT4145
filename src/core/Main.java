@@ -15,11 +15,11 @@ public class Main {
 //		OvelseUtenApparat oua = new OvelseUtenApparat("Hangups", og, "Beskrivelse");
 //		qf.setOvelseGruppe(og);
 //		qf.setOvelseUtenApparat(oua);
-		
-		Apparat apparat = new Apparat("Stativ", "...");
-		qf.setApparat(apparat);
-		OvelseMedApparat oma = new OvelseMedApparat("Pushdown", og, apparat);
-		qf.setOvelseMedApparat(oma);
+//		
+//		Apparat apparat = new Apparat("Stativ", "...");
+//		qf.setApparat(apparat);
+//		OvelseMedApparat oma = new OvelseMedApparat("Pushdown", og, apparat);
+//		qf.setOvelseMedApparat(oma);
 		
 		
 	

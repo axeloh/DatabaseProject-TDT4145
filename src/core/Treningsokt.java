@@ -1,5 +1,7 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Treningsokt {
 	
@@ -7,7 +9,7 @@ public class Treningsokt {
 	String date; // "yyyy-mm-dd hh-mm-ss"
 	int varighet;
 	Notat notat;
-	
+	List<Ovelse> ovelser = new ArrayList<>();
 	
 	
 	public Treningsokt(int treningsoktID, String date, int varighet, Notat notat) {
@@ -16,51 +18,46 @@ public class Treningsokt {
 		this.date = date;
 		this.varighet = varighet;
 		this.notat = notat;
+		
 	}
-
-
+	
+	public List<Ovelse> getOvelser(){
+		return ovelser;
+	}
+	
+	public void addOvelse(Ovelse o) {
+		if (!ovelser.contains(o)) {
+			ovelser.add(o);
+		}
+	}
 
 	public int getTreningsoktID() {
 		return treningsoktID;
 	}
 
-
-
 	public void setTreningsoktID(int treningsoktID) {
 		this.treningsoktID = treningsoktID;
 	}
-
-
 
 	public String getDate() {
 		return date;
 	}
 
-
-
 	public void setDate(String date) {
 		this.date = date;
 	}
-
-
 
 	public int getVarighet() {
 		return varighet;
 	}
 
-
-
 	public void setVarighet(int varighet) {
 		this.varighet = varighet;
 	}
 
-
-
 	public Notat getNotat() {
 		return notat;
 	}
-
-
 
 	public void setNotat(Notat notat) {
 		this.notat = notat;

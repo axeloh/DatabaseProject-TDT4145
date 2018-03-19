@@ -4,8 +4,29 @@ public abstract class Ovelse {
 
 	String navn;
 	OvelseGruppe ovelsegruppe;
+	int kilo;
+	int sets;
+	int reps;
 	
 	
+	public int getKilo() {
+		return kilo;
+	}
+	public void setKilo(int kilo) {
+		this.kilo = kilo;
+	}
+	public int getSets() {
+		return sets;
+	}
+	public void setSets(int sets) {
+		this.sets = sets;
+	}
+	public int getReps() {
+		return reps;
+	}
+	public void setReps(int reps) {
+		this.reps = reps;
+	}
 	public String getNavn() {
 		return navn;
 	}
