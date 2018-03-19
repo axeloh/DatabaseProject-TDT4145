@@ -3,14 +3,22 @@ package core;
 public class Notat {
 
 
-String notatID;
+int notatID;
 String treningsformal;
 String opplevelse;
+
 	
-public String getNotatID() {
+	public Notat(int notatID, String treningsformal, String opplevelse) {
+		this.notatID = notatID;
+		this.treningsformal = treningsformal;
+		this.opplevelse = opplevelse;
+	}
+	
+	public int getNotatID() {
 		return notatID;
 	}
-	public void setNotatID(String notatID) {
+	
+	public void setNotatID(int notatID) {
 		this.notatID = notatID;
 	}
 	public String getTreningsformal() {
