@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WelcomeController">
+   <children>
+      <AnchorPane prefHeight="768.0" prefWidth="1024.0">
+         <children>
+            <ImageView fitHeight="768.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../TDT4140%20-%20Programvareutvikling/Bilder/cfabstract.jpg" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f21fff" height="768.0" opacity="0.1337" stroke="BLACK" strokeType="INSIDE" width="1024.0" />
+            <TabPane prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Ny Ovelse">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="txtFieldNavn" layoutX="392.0" layoutY="230.0" prefWidth="200.0" promptText="Navn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txtFieldApparat" layoutX="392.0" layoutY="285.0" prefWidth="200.0" promptText="Navn på apparat">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txtFieldKilo" layoutX="392.0" layoutY="339.0" prefWidth="200.0" promptText="Antall kilo">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txtFieldReps" layoutX="392.0" layoutY="390.0" prefWidth="200.0" promptText="Antall reps">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="txtFieldBeskrivelse" layoutX="392.0" layoutY="446.0" prefWidth="200.0" promptText="Beskrivelse">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <CheckBox fx:id="checkBox" alignment="CENTER" contentDisplay="CENTER" layoutX="392.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Apprat" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="btnAdd" layoutX="392.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnLeggTil" prefHeight="38.0" prefWidth="200.0" text="Legg til">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="351.0" layoutY="77.0" text="It's Training" textFill="WHITE">
+                                 <font>
+                                    <Font name="Consolas" size="53.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Ny OvelseGruppe">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                  <Tab text="Ny Okt">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab text="Se Okter">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab text="Se Ovelse">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab text="Nytt Apparat">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
