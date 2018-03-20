@@ -9,15 +9,35 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import core.Apparat;
+import core.DBConnection;
 import core.Ovelse;
+import core.OvelseGruppe;
+import core.OvelseMedApparat;
+import core.OvelseUtenApparat;
+import core.QueryFactory;
 import core.Treningsokt;
 
 public class mainController {
 	
+	
+	Connection conn = DBConnection.getDBConnection();
+	
+	
+	public void initialize() throws SQLException {
+		
+	}
+	
     //*********nyOvelsegruppe-TAB***********
     //**************************************
     //**************************************
-
+	
+	
+	
     @FXML
     private TextField nyOvelsesgruppeTAB_txtFieldNavn;
     
@@ -25,8 +45,15 @@ public class mainController {
     private Button nyOvelsesgruppeTAB_btnAdd;
 
     
-    public void nyOvelsesgruppeTAB_btnLeggTil(ActionEvent event) {
-    	System.out.println("legger til øvelsesgruppe");
+    public void nyOvelsesgruppeTAB_btnLeggTil(ActionEvent event) throws Exception {
+    	QueryFactory query = new QueryFactory( this.conn );	
+    	
+    		String gruppeNavn = this.nyOvelsesgruppeTAB_txtFieldNavn.getText();
+    	
+    		OvelseGruppe ovelseGruppe = new OvelseGruppe(gruppeNavn);
+   
+    		query.setOvelseGruppe(ovelseGruppe);
+    		System.out.println("jkhsdf");
     }
     
     
@@ -44,8 +71,16 @@ public class mainController {
     private Button nyttApparatTAB_btnAdd;
     
     
-    public void nyttApparatTAB_btnLeggTil(ActionEvent event) {
+    public void nyttApparatTAB_btnLeggTil(ActionEvent event) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
     	System.out.println("legger til apparat");
+    	QueryFactory query = new QueryFactory( this.conn );	
+    	
+    	String navn = this.nyttApparatTAB_txtFieldNavn.getText();
+    	String beskrivelse = this.nyttApparatTAB_txtFieldBeskrivelse.getText();
+    	Apparat apparat = new Apparat(navn, beskrivelse);
+    	query.setApparat(apparat);
+    	
+    	System.out.println();
     }
     
     
@@ -66,7 +101,20 @@ public class mainController {
     private Button nyOvelseTAB_btnAddMedApparat;
     
     
-    public void nyOvelseTAB_btnLeggTilMedApparat(ActionEvent event) {
+    public void nyOvelseTAB_btnLeggTilMedApparat(ActionEvent event) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+    	QueryFactory query = new QueryFactory( this.conn );	
+    	
+    	String navn = this.nyOvelseTAB_txtFieldNavnMedApparat.getText();
+    	String apparatnavn = this.nyOvelseTAB_txtFieldApparatnavn.getText();
+    	String ovelsegruppe = this.nyOvelseTAB_txtFieldOvelsesgruppeNavnMedApparat.getText();
+    	
+    	Apparat apparat = new Apparat("Stativ", "for kulinger");
+    	OvelseGruppe ovelse1 = new OvelseGruppe("Armer");
+    
+    	
+    	OvelseMedApparat ovelse = new OvelseMedApparat(navn, ovelse1, apparat);
+    	query.setOvelseMedApparat(ovelse);
+    	
     	System.out.println("legger til ovelse med apparat");
     }
     
@@ -83,7 +131,20 @@ public class mainController {
     private Button nyOvelseTAB_btnAddUtenApparat;
     
  
-    public void nyOvelseTAB_btnLeggTilUtenApparat(ActionEvent event) {
+    public void nyOvelseTAB_btnLeggTilUtenApparat(ActionEvent event) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+    	QueryFactory query = new QueryFactory( this.conn );
+    	String navn = this.nyOvelseTAB_txtFieldNavnUtenApparat.getText();
+    	String ovelseGruppe = this.nyOvelseTAB_txtFieldOvelsesgruppeNavnUtenApparat.getText();
+    	String besk = this.nyOvelseTAB_txtAreaBeskrivelse.getText();
+    	
+    	OvelseGruppe ovelseGrp = new OvelseGruppe("Armer");
+    	
+    	OvelseUtenApparat ovelse = new OvelseUtenApparat(navn, ovelseGrp, besk);
+    	query.setOvelseUtenApparat(ovelse);
+    	
+    	
+    	
+    	
     	System.out.println("legger til ovelse uten apparat");
     }
     

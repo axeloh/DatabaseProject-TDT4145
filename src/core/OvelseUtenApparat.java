@@ -6,15 +6,11 @@ public class OvelseUtenApparat extends Ovelse{
 	
 	String beskrivelse;
 	
-	public OvelseUtenApparat(String navn, OvelseGruppe ovelsegruppe, String beskrivelse, List<Integer> performance) {
+	public OvelseUtenApparat(String navn, OvelseGruppe ovelsegruppe, String beskrivelse) {
 		this.navn = navn;
 		this.ovelsegruppe = ovelsegruppe;
 		this.beskrivelse = beskrivelse;
-		if (performance != null) {
-			this.kilo = performance.get(0);
-			this.sets = performance.get(1);
-			this.reps = performance.get(2);
-		}
+		
 	}
 
 	public String getBeskrivelse() {
