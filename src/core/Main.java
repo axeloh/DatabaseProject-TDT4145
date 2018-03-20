@@ -2,7 +2,9 @@ package core;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 	
@@ -22,15 +24,26 @@ public class Main {
 //		qf.setOvelseMedApparat(oma);
 		
 		
-		Notat n = new Notat(1, "blabla", "blabla");
-		Treningsokt okt = new Treningsokt(1, "2018-03-19 14-00-00", 90, n);
-		qf.setNotat(n);
-		qf.setTreningsokt(okt);
-		qf.setOvelseITreningsokt(okt, oua);
+//		Notat n = new Notat(1, "blabla", "blabla");
+//		Treningsokt okt = new Treningsokt(1, "2018-03-19 14-00-00", 90, n);
+//		qf.setNotat(n);
+//		qf.setTreningsokt(okt);
+//		qf.setOvelseITreningsokt(okt, oua);
+//		Notat n2 = new Notat(2, "..", ",,,");
+//		//qf.setNotat(n2);
+//		qf.getNotat(1);
+		
+		List<Treningsokt> okter = qf.getSisteTreningsokter(1);
+		okter.stream().forEach(o -> System.out.println(o.getDate()));
+		System.out.println(qf.ovelseErMedApparat("benchpress"));
+		System.out.println(qf.getBeskrivelseFromOUA("Hangups"));
+		System.out.println(qf.getApparat("Stativ"));
+		List<Ovelse> hangups = qf.getResultatLogg("HangUps", "1800-01-01 14:01:01", "3000-01-01 14:01:01");
+		hangups.stream().forEach(h -> System.out.println("Ovelse: " + h.getNavn() + ", Kg: " + h.getKilo() + ", Sets: " + h.getSets() + ", Reps: " + h.getReps()));
 		
 		
 		
-	
+		
 	}
 
 }
