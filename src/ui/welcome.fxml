@@ -5,13 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.NyOvelseController">
    <children>
@@ -25,41 +27,41 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f21fff" height="768.0" opacity="0.1337" stroke="BLACK" strokeType="INSIDE" width="1024.0" />
             <TabPane prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Ny Ovelse">
+                <Tab text="Ny øvelse">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="txtFieldNavn" layoutX="392.0" layoutY="230.0" prefWidth="200.0" promptText="Navn">
+                              <TextField fx:id="txtFieldNavn" layoutX="392.0" layoutY="230.0" opacity="0.8" prefWidth="200.0" promptText="Navn">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="txtFieldApparat" layoutX="392.0" layoutY="285.0" prefWidth="200.0" promptText="Navn på apparat">
+                              <TextField fx:id="txtFieldApparat" layoutX="392.0" layoutY="285.0" opacity="0.8" prefWidth="200.0" promptText="Navn på apparat">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="txtFieldKilo" layoutX="392.0" layoutY="339.0" prefWidth="200.0" promptText="Antall kilo">
+                              <TextField fx:id="txtFieldKilo" layoutX="392.0" layoutY="339.0" opacity="0.8" prefWidth="200.0" promptText="Antall kilo">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="txtFieldReps" layoutX="392.0" layoutY="390.0" prefWidth="200.0" promptText="Antall reps">
+                              <TextField fx:id="txtFieldReps" layoutX="392.0" layoutY="390.0" opacity="0.8" prefWidth="200.0" promptText="Antall reps">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="txtFieldBeskrivelse" layoutX="392.0" layoutY="446.0" prefWidth="200.0" promptText="Beskrivelse">
+                              <TextField fx:id="txtFieldBeskrivelse" layoutX="392.0" layoutY="446.0" opacity="0.8" prefWidth="200.0" promptText="Beskrivelse">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <CheckBox fx:id="checkBox" alignment="CENTER" contentDisplay="CENTER" layoutX="392.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Apprat" textAlignment="CENTER" textFill="WHITE">
+                              <CheckBox fx:id="checkBox" alignment="CENTER" contentDisplay="CENTER" layoutX="392.0" layoutY="193.0" mnemonicParsing="false" opacity="0.8" prefHeight="30.0" prefWidth="200.0" text="Apprat" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </CheckBox>
-                              <Button fx:id="btnAdd" layoutX="392.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnLeggTil" prefHeight="38.0" prefWidth="200.0" text="Legg til">
+                              <Button fx:id="btnAdd" layoutX="392.0" layoutY="505.0" mnemonicParsing="false" onAction="#btnLeggTil" opacity="0.8" prefHeight="38.0" prefWidth="200.0" text="Legg til">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
@@ -73,22 +75,110 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Ny OvelseGruppe">
+                <Tab text="Ny øvelsegruppe">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button layoutX="421.0" layoutY="184.0" mnemonicParsing="false" opacity="0.8" text="Vis treninger">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </Button>
+                              <TextField layoutX="421.0" layoutY="140.0" opacity="0.8" prefHeight="26.0" prefWidth="171.2" promptText="Antall økter">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TableView layoutX="1.0" layoutY="246.0" opacity="0.8" prefHeight="493.0" prefWidth="1022.0">
+                                <columns>
+                                  <TableColumn prefWidth="100.0" resizable="false" text="TreningsID" />
+                                  <TableColumn minWidth="9.066688537597656" prefWidth="150.0" resizable="false" text="Dato" />
+                                    <TableColumn prefWidth="150.0" resizable="false" text="Tid" />
+                                    <TableColumn editable="false" prefWidth="150.0" resizable="false" text="Varighet" />
+                                    <TableColumn editable="false" prefWidth="468.0" resizable="false" text="Notat" />
+                                </columns>
+                              </TableView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="366.0" layoutY="58.0" text="Treningsøkter" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Consolas" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Ny Okt">
+                  <Tab text="Legg til øvelse">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField layoutX="54.0" layoutY="185.0" opacity="0.8" prefHeight="38.0" prefWidth="208.0" promptText="Øvelsegruppenavn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField layoutX="666.0" layoutY="183.0" opacity="0.8" prefHeight="38.0" prefWidth="321.0" promptText="Øvelseenavn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField layoutX="304.0" layoutY="184.0" opacity="0.8" prefHeight="38.0" prefWidth="285.0" promptText="Øvelsenavn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Button layoutX="55.0" layoutY="242.0" mnemonicParsing="false" opacity="0.8" prefHeight="38.0" prefWidth="208.0" text="Legg til">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </Button>
+                              <TextField layoutX="302.0" layoutY="245.0" opacity="0.8" prefHeight="38.0" prefWidth="287.0" promptText="Apparatnavn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextField layoutX="303.0" layoutY="306.0" opacity="0.8" prefHeight="38.0" prefWidth="287.0" promptText="Øvelsegruppenavn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextArea layoutX="303.0" layoutY="387.0" opacity="0.8" prefHeight="323.0" prefWidth="286.0" promptText="Beskrivelse">
+                                 <font>
+                                    <Font name="Consolas Italic" size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Label layoutX="306.0" layoutY="142.0" text="Med apparat" textFill="WHITE">
+                                 <font>
+                                    <Font name="Consolas Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="666.0" layoutY="141.0" text="Uten apparat" textFill="WHITE">
+                                 <font>
+                                    <Font name="Consolas Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="664.0" layoutY="245.0" opacity="0.8" prefHeight="38.0" prefWidth="322.0" promptText="Øvelsegruppenavn">
+                                 <font>
+                                    <Font name="Consolas" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <TextArea layoutX="666.0" layoutY="390.0" opacity="0.8" prefHeight="326.0" prefWidth="324.0" promptText="Beskrivelse">
+                                 <font>
+                                    <Font name="Consolas Italic" size="20.0" />
+                                 </font>
+                              </TextArea>
+                              <Label layoutX="346.0" layoutY="38.0" text="Legg til øvelse" textFill="WHITE">
+                                 <font>
+                                    <Font name="Consolas Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Se økter">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
                   </Tab>
-                  <Tab text="Se Okter">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
-                  <Tab text="Se Ovelse">
+                  <Tab text="Se øvelser">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
