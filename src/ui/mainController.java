@@ -180,7 +180,7 @@ public class mainController {
 
     
     public void seTreningsokterTAB_btnVisTreninger(ActionEvent event) {
-    	System.out.println("ser treningokter");
+    	System.out.println("ser treningokterr");
     }
     
     
