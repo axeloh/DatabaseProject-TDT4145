@@ -14,9 +14,7 @@ private static Connection conn;
 			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/theodoaw_mcFriends?autoReconnect=true&useSSL=false";
 			String user = "theodoaw";
 			String pass = "theodor";
-			System.out.println("Gets here");
 			//Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			System.out.println("Gets here");
 			conn = DriverManager.getConnection(url, user, pass);
 			System.out.println("Connected to the database");
 		} catch (Exception e) {
