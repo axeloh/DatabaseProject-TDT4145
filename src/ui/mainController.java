@@ -52,7 +52,7 @@ public class mainController {
 	
 	public void initialize() throws SQLException {
     	ObservableList<String> ovelseGruppeChoiceList = FXCollections.observableArrayList();
-    	
+    	QueryFactory query = new QueryFactory( this.conn );
     	//må hente alle ovelsesgrupper i db til en liste    
     	
     	//bare for testing
@@ -66,7 +66,7 @@ public class mainController {
 	
     //*********nyOvelsegruppe-TAB***********
     //**************************************
-    //**************************************
+    //*************************************
 	
 	
 	
