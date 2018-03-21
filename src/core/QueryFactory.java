@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
 
 
@@ -106,10 +106,11 @@ public class QueryFactory {
 	
 	public List<Ovelse> getResultatLogg(String ovelse, String start, String slutt) throws SQLException {
 		Statement statement = conn.createStatement();
-		String sql = String.format("select * from (OvelseITreningsokt natural join Treningsokt natural join Ovelse) where navn = ('%s') and datotid >= ('%s') and datotid <= ('%s')", ovelse, start, slutt);
+		String sql = String.format("select * from (OvelseITreningsokt natural join Treningsokt natural join Ovelse join OvelseMedApparat join OvelseUtenApparat) where OvelseITreningsokt.navn = ('%s') and datotid >= ('%s') and datotid <= ('%s')", ovelse, start, slutt);
 		ResultSet rs = statement.executeQuery(sql);
 		List<Ovelse> ovelser = new ArrayList<Ovelse>();
-		boolean ja = ovelseErMedApparat(ovelse);
+		//boolean ja = ovelseErMedApparat(ovelse);
+		
 		while (rs.next()) {
 			// Felles for OMA og OUA er ovelsegruppe og performance
 			OvelseGruppe ovelseGruppe = new OvelseGruppe(rs.getString("ovelsegruppeID"));
@@ -118,9 +119,8 @@ public class QueryFactory {
 			int reps = Integer.parseInt(rs.getString("reps"));
 			List<Integer> performance = Arrays.asList(kg, sets, reps);
 			
-			
 			// Saeregent 
-			if (ja) {
+			if (rs.getString("apparatnavn") != null) {
 				Apparat apparat = getApparat(rs.getString("apparatnavn"));
 				OvelseMedApparat oma = new OvelseMedApparat(ovelse, ovelseGruppe, apparat, performance);
 				ovelser.add(oma);
@@ -132,6 +132,7 @@ public class QueryFactory {
 			}
 		}
 		return ovelser;
+		
 		}
 		
 	
@@ -163,16 +164,68 @@ public class QueryFactory {
 	
 	public Apparat getApparat(String apparatnavn) throws SQLException {
 		Statement statement = conn.createStatement();
-		String sql = "select * from Apparat";
+		String sql = String.format("select * from Apparat where navn = ('%s')", apparatnavn);
 		ResultSet rs = statement.executeQuery(sql);
 		while (rs.next()) {
-			if (rs.getString("navn").equals(apparatnavn)){
 				Apparat a = new Apparat(rs.getString("navn"), rs.getString("beskrivelse"));
 				return a;
-			}
 		}
 		return null;
 	}
+	
+	public List<Ovelse> getOvelserInOvelsegruppe(String ovelsegruppe) throws SQLException{
+		List<Ovelse> ovelser = getAlleOvelser();
+		return ovelser.stream().filter(o -> o.ovelsegruppe.getNavn().equals(ovelsegruppe)).collect(Collectors.toList());
+		
+	}
+	
+	public List<Ovelse> getAlleOvelser() throws SQLException{
+		Statement statement = conn.createStatement();
+		String sql = String.format("select * from Ovelse join OvelseMedApparat join OvelseUtenApparat");
+		ResultSet rs = statement.executeQuery(sql);
+		List<Ovelse> ovelser = new ArrayList<>();
+		
+		while (rs.next()) {
+			String ovelse = rs.getString("navn");
+			//boolean ja = ovelseErMedApparat(ovelse);
+			
+			// Felles for OMA og OUA er ovelsegruppe og performance
+			OvelseGruppe ovelseGruppe = new OvelseGruppe(rs.getString("ovelsegruppeID"));
+//			int kg = Integer.parseInt(rs.getString("kilogram"));
+//			int sets = Integer.parseInt(rs.getString("sett"));
+//			int reps = Integer.parseInt(rs.getString("reps"));
+//			List<Integer> performance = Arrays.asList(kg, sets, reps);
+			
+			// Saeregent 
+			if (rs.getString("apparatnavn") != null) {
+				Apparat apparat = getApparat(rs.getString("apparatnavn"));
+				OvelseMedApparat oma = new OvelseMedApparat(ovelse, ovelseGruppe, apparat, null);
+				ovelser.add(oma);
+			}
+			else {
+				String beskrivelse = getBeskrivelseFromOUA(ovelse);
+				OvelseUtenApparat oua = new OvelseUtenApparat(ovelse, ovelseGruppe, beskrivelse, null);
+				ovelser.add(oua);
+			}
+		}
+		return ovelser;
+		
+	}
+	
+//	public List<Ovelse> getOvelserITreningsokt(String treningsoktID) throws SQLException{
+//		Statement statement = conn.createStatement();
+//		String sql = String.format("select * from (OvelseITreningsokt natural join Ovelse) where treningsoktID = ('%s')", treningsoktID);
+//		ResultSet rs = statement.executeQuery(sql);
+//		List<Ovelse> alleOvelser = getAlleOvelser();
+//		List<Ovelse> ovelser = new ArrayList<>();
+//		while (rs.next()) {
+//			String id = rs.getString("treningsoktID");
+//			
+//		}
+//	}
+	
+	
+	
 	
 	
 	

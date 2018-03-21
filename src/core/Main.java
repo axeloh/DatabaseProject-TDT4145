@@ -33,16 +33,22 @@ public class Main {
 //		//qf.setNotat(n2);
 //		qf.getNotat(1);
 		
-		List<Treningsokt> okter = qf.getSisteTreningsokter(1);
+		List<Treningsokt> okter = qf.getSisteTreningsokter(5);
 		okter.stream().forEach(o -> System.out.println(o.getDate()));
 		System.out.println(qf.ovelseErMedApparat("benchpress"));
-		System.out.println(qf.getBeskrivelseFromOUA("Hangups"));
-		System.out.println(qf.getApparat("Stativ"));
-		List<Ovelse> hangups = qf.getResultatLogg("HangUps", "1800-01-01 14:01:01", "3000-01-01 14:01:01");
-		hangups.stream().forEach(h -> System.out.println("Ovelse: " + h.getNavn() + ", Kg: " + h.getKilo() + ", Sets: " + h.getSets() + ", Reps: " + h.getReps()));
+		System.out.println(qf.getBeskrivelseFromOUA("Bicepscurl"));
+		System.out.println(qf.getApparat("Benk"));
+		List<Ovelse> bench = qf.getResultatLogg("Benkpress", "1800-01-01 14:01:01", "3000-01-01 14:01:01");
+		bench.stream().forEach(h -> System.out.println("Ovelse: " + h.getNavn() + ", Kg: " + h.getKilo() + ", Sets: " + h.getSets() + ", Reps: " + h.getReps() + ", Ovelsegruppe: " + h.getOvelsegruppe().getNavn()) );
+		System.out.println(bench.size());
 		
 		
-		
+		//List<Ovelse> alle = qf.getAlleOvelser();
+		//alle.stream().forEach(a -> System.out.println(a.getNavn()));
+		System.out.println("----------------------");
+		//List<Ovelse> skuldre = qf.getOvelserInOvelsegruppe("Skuldre");
+		//skuldre.stream().forEach(s -> System.out.println(s.getNavn()));
+		//System.out.println(alle.size());
 		
 	}
 
