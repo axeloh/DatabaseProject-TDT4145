@@ -9,6 +9,7 @@ public class Treningsokt {
 	String date; // "yyyy-mm-dd hh-mm-ss"
 	int varighet;
 	Notat notat;
+	String notatTekst;
 	List<Ovelse> ovelser = new ArrayList<>();
 	
 	
@@ -18,7 +19,12 @@ public class Treningsokt {
 		this.date = date;
 		this.varighet = varighet;
 		this.notat = notat;
+		this.notatTekst = notat.getOpplevelse();
 		
+	}
+	
+	public String getNotatTekst() {
+		return this.notatTekst;
 	}
 	
 	public List<Ovelse> getOvelser(){
