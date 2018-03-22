@@ -88,7 +88,7 @@ public class QueryFactory {
 		ResultSet rs = statement.executeQuery(sql);
 		List<Treningsokt> okter = new ArrayList<Treningsokt>();
 		
-		// Find first n treningsokter
+		// For hver rad opprett treningsokt-objekt og legg til i lista
 		while(rs.next()) {
 			int treningsoktID = Integer.parseInt(rs.getString("treningsoktID"));
 			String datotid = rs.getString("datotid");
