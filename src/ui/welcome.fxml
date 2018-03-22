@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -32,17 +31,17 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="nyOvelsesgruppeTAB_txtFieldNavn" layoutX="392.0" layoutY="230.0" opacity="0.8" prefWidth="200.0" promptText="Navn">
+                              <TextField fx:id="nyOvelsesgruppeTAB_txtFieldNavn" layoutX="401.0" layoutY="208.0" opacity="0.8" prefHeight="67.0" prefWidth="236.0" promptText="Navn">
                                  <font>
-                                    <Font name="Consolas" size="20.0" />
+                                    <Font size="34.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="nyOvelsesgruppeTAB_btnAdd" layoutX="391.0" layoutY="300.0" mnemonicParsing="false" onAction="#nyOvelsesgruppeTAB_btnLeggTil" opacity="0.8" prefHeight="38.0" prefWidth="200.0" text="Legg til">
+                              <Button fx:id="nyOvelsesgruppeTAB_btnAdd" layoutX="403.0" layoutY="295.0" mnemonicParsing="false" onAction="#nyOvelsesgruppeTAB_btnLeggTil" opacity="0.8" prefHeight="81.0" prefWidth="234.0" text="Legg til">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="252.0" layoutY="124.0" text="Legg til øvelsesgruppe" textFill="WHITE">
+                              <Label layoutX="243.0" layoutY="104.0" text="Legg til øvelsesgruppe" textFill="WHITE">
                                  <font>
                                     <Font name="Consolas" size="53.0" />
                                  </font>
@@ -60,22 +59,22 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="nyttApparatTAB_txtFieldNavn" layoutX="393.0" layoutY="171.0" prefHeight="61.0" prefWidth="296.0" promptText="Navn">
+                              <TextField fx:id="nyttApparatTAB_txtFieldNavn" layoutX="381.0" layoutY="164.0" prefHeight="61.0" prefWidth="296.0" promptText="Navn">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyttApparatTAB_txtFieldBeskrivelse" layoutX="378.0" layoutY="281.0" prefHeight="84.0" prefWidth="309.0" promptText="Beskrivelse">
+                              <TextField fx:id="nyttApparatTAB_txtFieldBeskrivelse" layoutX="380.0" layoutY="259.0" prefHeight="74.0" prefWidth="293.0" promptText="Beskrivelse">
                                  <font>
                                     <Font size="31.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="nyttApparatTAB_btnAdd" layoutX="452.0" layoutY="410.0" mnemonicParsing="false" onAction="#nyttApparatTAB_btnLeggTil" text="Legg til">
+                              <Button fx:id="nyttApparatTAB_btnAdd" layoutX="418.0" layoutY="385.0" mnemonicParsing="false" onAction="#nyttApparatTAB_btnLeggTil" prefHeight="83.0" prefWidth="210.0" text="Legg til">
                                  <font>
                                     <Font size="43.0" />
                                  </font>
                               </Button>
-                              <Text layoutX="391.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til Apparat">
+                              <Text layoutX="364.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til Apparat">
                                  <font>
                                     <Font size="46.0" />
                                  </font>
@@ -92,59 +91,54 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="nyOvelseTAB_txtFieldNavnUtenApparat" layoutX="666.0" layoutY="183.0" opacity="0.8" prefHeight="38.0" prefWidth="321.0" promptText="Øvelseenavn">
+                              <TextField fx:id="nyOvelseTAB_txtFieldNavnUtenApparat" layoutX="648.0" layoutY="182.0" opacity="0.8" prefHeight="38.0" prefWidth="321.0" promptText="Øvelseenavn">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyOvelseTAB_txtFieldNavnMedApparat" layoutX="304.0" layoutY="184.0" opacity="0.8" prefHeight="38.0" prefWidth="285.0" promptText="Øvelsenavn">
+                              <TextField fx:id="nyOvelseTAB_txtFieldNavnMedApparat" layoutX="180.0" layoutY="180.0" opacity="0.8" prefHeight="38.0" prefWidth="285.0" promptText="Øvelsenavn">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="nyOvelseTAB_btnAddMedApparat" layoutX="326.0" layoutY="395.0" mnemonicParsing="false" onAction="#nyOvelseTAB_btnLeggTilMedApparat" opacity="0.8" prefHeight="38.0" prefWidth="208.0" text="Legg til">
+                              <Button fx:id="nyOvelseTAB_btnAddMedApparat" layoutX="214.0" layoutY="388.0" mnemonicParsing="false" onAction="#nyOvelseTAB_btnLeggTilMedApparat" opacity="0.8" prefHeight="40.0" prefWidth="191.0" text="Legg til">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="nyOvelseTAB_txtFieldApparatnavn" layoutX="302.0" layoutY="245.0" opacity="0.8" prefHeight="38.0" prefWidth="287.0" promptText="Apparatnavn">
+                              <TextField fx:id="nyOvelseTAB_txtFieldApparatnavn" layoutX="178.0" layoutY="248.0" opacity="0.8" prefHeight="40.0" prefWidth="288.0" promptText="Apparatnavn">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyOvelseTAB_txtFieldOvelsesgruppeNavnMedApparat" layoutX="303.0" layoutY="306.0" opacity="0.8" prefHeight="38.0" prefWidth="287.0" promptText="Øvelsegruppenavn">
+                              <TextField fx:id="nyOvelseTAB_txtFieldOvelsesgruppeNavnMedApparat" layoutX="181.0" layoutY="317.0" opacity="0.8" prefHeight="40.0" prefWidth="287.0" promptText="Øvelsegruppenavn">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="306.0" layoutY="142.0" text="Med apparat" textFill="WHITE">
+                              <Label layoutX="218.0" layoutY="140.0" text="Med apparat" textFill="WHITE">
                                  <font>
                                     <Font name="Consolas Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="666.0" layoutY="141.0" text="Uten apparat" textFill="WHITE">
+                              <Label layoutX="663.0" layoutY="143.0" text="Uten apparat" textFill="WHITE">
                                  <font>
                                     <Font name="Consolas Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="nyOvelseTAB_txtFieldOvelsesgruppeNavnUtenApparat" layoutX="664.0" layoutY="245.0" opacity="0.8" prefHeight="38.0" prefWidth="322.0" promptText="Øvelsegruppenavn">
+                              <TextField fx:id="nyOvelseTAB_txtFieldOvelsesgruppeNavnUtenApparat" layoutX="649.0" layoutY="245.0" opacity="0.8" prefHeight="38.0" prefWidth="322.0" promptText="Øvelsegruppenavn">
                                  <font>
                                     <Font name="Consolas" size="20.0" />
                                  </font>
                               </TextField>
-                              <TextArea fx:id="nyOvelseTAB_txtAreaBeskrivelse" layoutX="666.0" layoutY="334.0" opacity="0.8" prefHeight="82.0" prefWidth="324.0" promptText="Beskrivelse">
-                                 <font>
-                                    <Font name="Consolas Italic" size="20.0" />
-                                 </font>
-                              </TextArea>
                               <Label layoutX="346.0" layoutY="38.0" text="Legg til øvelse" textFill="WHITE">
                                  <font>
                                     <Font name="Consolas Bold" size="40.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="nyOvelseTAB_btnAddUtenApparat" layoutX="730.0" layoutY="430.0" mnemonicParsing="false" onAction="#nyOvelseTAB_btnLeggTilUtenApparat" prefHeight="55.0" prefWidth="213.0" text="Legg til">
+                              <Button fx:id="nyOvelseTAB_btnAddUtenApparat" layoutX="718.0" layoutY="382.0" mnemonicParsing="false" onAction="#nyOvelseTAB_btnLeggTilUtenApparat" prefHeight="44.0" prefWidth="202.0" text="Legg til">
                                  <font>
-                                    <Font size="29.0" />
+                                    <Font size="23.0" />
                                  </font>
                               </Button>
                               <Text fx:id="nyOvelseTAB_txtFeil" layoutX="498.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="254.170166015625">
@@ -152,6 +146,11 @@
                                     <Font size="26.0" />
                                  </font>
                               </Text>
+                              <TextField fx:id="nyOvelseTAB_txtFieldOvelsesgruppeBeskrivelseUtenApparat" layoutX="645.0" layoutY="308.0" prefHeight="49.0" prefWidth="318.0" promptText="Beskrivelse">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </TextField>
                            </children></AnchorPane>
                      </content>
                   </Tab>
@@ -159,7 +158,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldID" layoutX="149.0" layoutY="65.0" prefHeight="38.0" prefWidth="211.0" promptText="ID">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldID" layoutX="149.0" layoutY="65.0" prefHeight="44.0" prefWidth="142.0" promptText="ID">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -169,19 +168,19 @@
                                     <Font size="22.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldVarighet" layoutX="153.0" layoutY="187.0" prefHeight="48.0" prefWidth="206.0" promptText="Varighet">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldVarighet" layoutX="146.0" layoutY="186.0" prefHeight="49.0" prefWidth="148.0" promptText="Varighet">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldNotatID" layoutX="147.0" layoutY="251.0" prefHeight="43.0" prefWidth="208.0" promptText="NotatID">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldNotatID" layoutX="144.0" layoutY="249.0" prefHeight="48.0" prefWidth="148.0" promptText="NotatID">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldFormal" layoutX="135.0" layoutY="321.0" prefHeight="62.0" prefWidth="220.0" promptText="Treningsformål">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldFormal" layoutX="142.0" layoutY="321.0" prefHeight="48.0" prefWidth="306.0" promptText="Treningsformål">
                                  <font>
-                                    <Font size="24.0" />
+                                    <Font size="21.0" />
                                  </font>
                               </TextField>
                               <Text layoutX="23.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato og tid">
@@ -189,9 +188,9 @@
                                     <Font size="21.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldOpplevelse" layoutX="152.0" layoutY="410.0" prefHeight="55.0" prefWidth="240.0" promptText="Opplevelse">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldOpplevelse" layoutX="143.0" layoutY="386.0" prefHeight="48.0" prefWidth="303.0" promptText="Opplevelse">
                                  <font>
-                                    <Font size="29.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </TextField>
                               <Button fx:id="nyOvelseTAB_btnAddOkt" layoutX="223.0" layoutY="499.0" mnemonicParsing="false" onAction="#nyTreningsoktTAB_btnAddOkt" text="Legg til økt">
@@ -199,22 +198,22 @@
                                     <Font size="34.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldNavn" layoutX="676.0" layoutY="96.0" promptText="Navn">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldNavn" layoutX="676.0" layoutY="96.0" prefHeight="41.0" prefWidth="166.0" promptText="Navn">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldKilo" layoutX="676.0" layoutY="156.0" prefHeight="44.0" prefWidth="104.0" promptText="Kilo">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldKilo" layoutX="676.0" layoutY="156.0" prefHeight="44.0" prefWidth="165.0" promptText="Kilo">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldReps" layoutX="676.0" layoutY="223.0" prefHeight="41.0" prefWidth="115.0" promptText="Reps">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldReps" layoutX="676.0" layoutY="223.0" prefHeight="41.0" prefWidth="165.0" promptText="Reps">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="nyTreningsoktTAB_txtFieldSet" layoutX="683.0" layoutY="284.0" prefHeight="40.0" prefWidth="112.0" promptText="Set">
+                              <TextField fx:id="nyTreningsoktTAB_txtFieldSet" layoutX="674.0" layoutY="284.0" prefHeight="41.0" prefWidth="164.0" promptText="Set">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -224,7 +223,7 @@
                                     <Font size="31.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="181.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til treningsøkt">
+                              <Text layoutX="174.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til treningsøkt">
                                  <font>
                                     <Font size="27.0" />
                                  </font>
@@ -252,10 +251,10 @@
                                     <Font size="38.0" />
                                  </font>
                               </Text>
-                              <TableView fx:id="seOvelserTAB_ovelseCountColumn" layoutX="-5.0" layoutY="213.0" prefHeight="529.0" prefWidth="1030.0">
+                              <TableView fx:id="seOvelserTAB_tableViewOvelser" layoutX="-5.0" layoutY="213.0" prefHeight="529.0" prefWidth="1030.0">
                                 <columns>
                                   <TableColumn fx:id="seOvelserTAB_ovelseColumn" prefWidth="399.0" text="Øvelse" />
-                                    <TableColumn prefWidth="201.0" text="Antall økter" />
+                                    <TableColumn fx:id="seOvelserTAB_ovelseAntallColumn" prefWidth="201.0" text="Antall økter" />
                                 </columns>
                               </TableView>
                               <Button fx:id="seOvelserTAB_btnSeOvelse" layoutX="575.0" layoutY="112.0" mnemonicParsing="false" onAction="#seOvelserTAB_btnSeOvelse" prefHeight="44.0" prefWidth="87.0" text="Se">
@@ -293,7 +292,7 @@
                                     <Font name="Consolas" size="40.0" />
                                  </font>
                               </Label>
-                              <Text fx:id="seTreningsokterTAB_txtFeil" layoutX="697.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="232.68560791015625">
+                              <Text fx:id="seTreningsokterTAB_txtFeil" layoutX="697.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.68560791015625">
                                  <font>
                                     <Font size="26.0" />
                                  </font>
@@ -324,7 +323,7 @@
                                     <Font size="22.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="seResultatloggTAB_txtFieldTilTid" layoutX="573.0" layoutY="172.0" prefHeight="81.0" prefWidth="258.0" promptText="yyyy-mm-dd hh:mm:ss">
+                              <TextField fx:id="seResultatloggTAB_txtFieldTilTid" layoutX="553.0" layoutY="172.0" prefHeight="60.0" prefWidth="298.0" promptText="yyyy-mm-dd hh:mm:ss">
                                  <font>
                                     <Font size="21.0" />
                                  </font>

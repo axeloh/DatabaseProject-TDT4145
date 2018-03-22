@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.Query;
+
 import core.Apparat;
 import core.DBConnection;
 import core.Notat;
@@ -34,13 +36,19 @@ public class mainController {
 	  //_____CLASS
     public class OvelseCell {
     		private String ovelse;
+    		private int antall;
     		
-    	public OvelseCell(String ovelse) {
+    	public OvelseCell(String ovelse,int antall) {
     		this.ovelse = ovelse;
+    		this.antall = antall;
     		
     		}
 		public String getOvelse() {
-			return ovelse;
+			return this.ovelse;
+		}
+		
+		public int getAntall() {
+			return this.antall;
 		}
 
     	
@@ -89,12 +97,17 @@ public class mainController {
     	ObservableList<String> ovelseGruppeChoiceList = FXCollections.observableArrayList();
     	QueryFactory query = new QueryFactory( this.conn );
     	//må hente alle ovelsesgrupper i db til en liste  
- 
+    	List<OvelseGruppe> alleOvGruppe = query.getAlleOvelsegrupper();
     	
-    	//bare for testing
     	ovelseGruppeChoiceList.add("Alle øvelser");
-    	ovelseGruppeChoiceList.add("Skuldre");
-    	ovelseGruppeChoiceList.add("Armer");
+    	
+    	for (OvelseGruppe gr : alleOvGruppe) {
+    		ovelseGruppeChoiceList.add(gr.getNavn());
+    	}
+
+    	
+    	
+
     	
     	
     	seOvelserTAB_choiceOvelsesgruppe.setItems(ovelseGruppeChoiceList);
@@ -104,7 +117,7 @@ public class mainController {
     //	seResultatloggTAB_choiceOvelser
     List<Ovelse> ovelser =	query.getAlleOvelser();
 	ObservableList<String> resultatloggChoiceList = FXCollections.observableArrayList();
-	System.out.println(ovelser);
+
 	for (Ovelse ov : ovelser ) {
 		resultatloggChoiceList.add(ov.getNavn());
 	}
@@ -149,7 +162,7 @@ public class mainController {
     			
     		}
     		
-    		System.out.println("jkhsdf");
+ 
     }
     
     
@@ -269,6 +282,8 @@ public class mainController {
     private TextArea nyOvelseTAB_txtAreaBeskrivelse;
     @FXML
     private Button nyOvelseTAB_btnAddUtenApparat;
+    @FXML
+    private TextField nyOvelseTAB_txtFieldOvelsesgruppeBeskrivelseUtenApparat;
     
  
     public void nyOvelseTAB_btnLeggTilUtenApparat(ActionEvent event) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -279,7 +294,9 @@ public class mainController {
     	try {
         	String navn = this.nyOvelseTAB_txtFieldNavnUtenApparat.getText();
         	String ovelseGruppe = this.nyOvelseTAB_txtFieldOvelsesgruppeNavnUtenApparat.getText();
-        	String besk = this.nyOvelseTAB_txtAreaBeskrivelse.getText();
+        	String besk = this.nyOvelseTAB_txtFieldOvelsesgruppeBeskrivelseUtenApparat.getText();
+        	System.out.println("beskrivelse:");
+        	System.out.println(besk);
         	
         	//eventuelt sjekk for om denne eksisterer
         	OvelseGruppe ovelseGrp = new OvelseGruppe(ovelseGruppe);
@@ -430,6 +447,8 @@ public class mainController {
     private TableView<OvelseCell> seOvelserTAB_tableViewOvelser;
     @FXML
     private TableColumn<OvelseCell, String> seOvelserTAB_ovelseColumn;
+    @FXML
+    private TableColumn<OvelseCell, Integer> seOvelserTAB_ovelseAntallColumn;
     
     
     //må legge til funksjonalitet for denne 
@@ -440,32 +459,38 @@ public class mainController {
     private Button seOvelserTAB_btnSeOvelse;
 
     
-    public void seOvelserTAB_btnSeOvelse(ActionEvent event) {
+    public void seOvelserTAB_btnSeOvelse(ActionEvent event) throws SQLException {
+    	QueryFactory query = new QueryFactory( this.conn );
     	System.out.println("ser ovelser");
     	
     String valgt = seOvelserTAB_choiceOvelsesgruppe.getSelectionModel().getSelectedItem();
     
-  
-    if (valgt.equals("alle")) {
-    	// se alle øvelser med count
-    }
-  
-    //_______
-    
-    //setter liste
+    List<Ovelse> ovelser;
+   
     ObservableList<OvelseCell> obs = FXCollections.observableArrayList();
     
-    //må få liste fra db
- 	//List<Ovelse> ovelser = db.getOvelser(Ovelsegruppe);
- 	// for (Ovelse ov : overlser) { obs.add(  new OvelseCell( ov.getNavn() )  )  };
+    if (valgt.equals("Alle øvelser")) {
+    		ovelser = query.getAlleOvelser();
+    	
+    } else {
+    		ovelser = query.getOvelserInOvelsegruppe(valgt);
+    }
+
+  
+    for (Ovelse ov : ovelser ) {
+    		OvelseCell ovCell = new OvelseCell(ov.getNavn(),query.getAntallGangerOvelseUtfort(ov.getNavn()));
+ 
+    		obs.add(ovCell);
+
+    }
     
-    
-    //må fjerne denne, bare for testing
-    obs.add( new OvelseCell("Hangups")  );
-    obs.add(new OvelseCell("Pushdown"));
+   
+
     
     //setter column
     seOvelserTAB_ovelseColumn.setCellValueFactory(new PropertyValueFactory<OvelseCell, String>("ovelse"));
+    seOvelserTAB_ovelseAntallColumn.setCellValueFactory(new PropertyValueFactory<OvelseCell, Integer>("antall"));
+
     seOvelserTAB_tableViewOvelser.setItems(obs);
  
 
@@ -585,27 +610,17 @@ public class mainController {
         	String slutt = this.seResultatloggTAB_txtFieldTilTid.getText();
         	
 //        	______input ___
-        	System.out.println(valgt2);
-        	System.out.println(start);
-        	System.out.println(slutt);
+  
         //	______input ferdig___
         	List<Ovelse> ovelser = query.getResultatLogg(valgt2, start, slutt);
         	
         	
          //setter liste
          ObservableList<LoggCell> obs2 = FXCollections.observableArrayList();
-         
-         System.out.println("ovelse.liste");
-         System.out.println(ovelser);
-         System.out.println("");
+
          for (Ovelse ov : ovelser ) {
         	 obs2.add( new LoggCell(ov.getNavn(), ov.getKilo(), ov.getReps(), ov.getSets())  );
-        	 System.out.println("___________-");
-        	 System.out.println(ov.getNavn());
-        	 System.out.println(ov.getKilo());
-        	 System.out.println(ov.getReps());
-        	 System.out.println(ov.getSets());
-        	 System.out.println("________");
+ 
          }
         	
          //setter column
