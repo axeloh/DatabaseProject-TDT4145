@@ -8,7 +8,6 @@ public abstract class Ovelse {
 	int sets;
 	int reps;
 	
-	
 	public int getKilo() {
 		return kilo;
 	}
