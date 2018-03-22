@@ -16,6 +16,13 @@ public class OvelseMedApparat extends Ovelse{
 			this.reps = performance.get(2);
 		}
 	}
+	
+	public OvelseMedApparat(String navn, OvelseGruppe ovelsegruppe, Apparat apparat) {
+		this.navn = navn;
+		this.ovelsegruppe = ovelsegruppe;
+		this.apparat = apparat;
+		
+	}
 
 	public Apparat getApparatnavn() {
 		return apparat;
