@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -303,6 +302,7 @@
                                     <Font size="26.0" />
                                  </font>
                               </Text>
+                              <Text layoutX="26.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klikk på en treningsøkt for å se øvelsene den inneholder" />
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -361,7 +361,7 @@
                               </Text>
                               <Text fx:id="info" layoutX="768.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Velg blank for å se gjennom alle tider)" wrappingWidth="123.48388671875" />
                               <Text layoutX="159.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Velg blank for å se alle øvelser)" />
-                              <ProgressBar fx:id="progressbar" layoutX="413.0" layoutY="225.0" prefHeight="18.0" prefWidth="131.0" progress="0.0" />
+                              <Text fx:id="txt_henter_okter" fill="#15c252" layoutX="401.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Henter økter..." wrappingWidth="95.50115966796875" />
                            </children>
                         </AnchorPane>
                     </content>

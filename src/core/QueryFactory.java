@@ -278,6 +278,19 @@ public class QueryFactory {
 		
 	}
 	
+	public List<Notat> getAlleNotater() throws SQLException {
+		Statement statement = conn.createStatement();
+		String sql = String.format("select * from Notat");
+		ResultSet rs = statement.executeQuery(sql);
+		List<Notat> alleNotater = new ArrayList<>();
+		while (rs.next()) {
+				Notat notat = new Notat(Integer.parseInt(rs.getString("notatID")), rs.getString("treningsformaal"), rs.getString("opplevelse"));
+				alleNotater.add(notat);
+		}
+		return alleNotater;
+		
+	}
+	
 	
 	
 	

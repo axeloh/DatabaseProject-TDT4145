@@ -3,8 +3,10 @@ package ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -16,7 +18,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -101,6 +109,7 @@ public class mainController {
 	List<Ovelse> ovelser;
 	List<Apparat> apparater;
 	List<Treningsokt> okter;
+	List<Notat> notater;
 	
 	
 	
@@ -128,7 +137,9 @@ public class mainController {
     	}
     	seResultatloggTAB_choiceOvelser.setItems(resultatloggChoiceList);
     	
-    	
+    	okter = query.getSisteTreningsokter(null);
+    	notater = query.getAlleNotater();
+    	apparater = query.getAlleApparater();
 		
     	// Se allerede registrerte apparater i apparat-tab
     	ObservableList<String> apparatList = FXCollections.observableArrayList();
@@ -136,6 +147,7 @@ public class mainController {
     	apparater.stream().forEach(a -> apparatList.add(a.getNavn()));
     	apparater_lw.setItems(apparatList);
     	
+    	txt_henter_okter.setVisible(false);
     	
 	}
 	
@@ -365,28 +377,40 @@ public class mainController {
     private Text nyTreningsoktTAB_txtFeil;
     
     public void nyTreningsoktTAB_btnAddOkt(ActionEvent event) throws SQLException {
-    	System.out.println("legger til treningsÃ¸kt");
+    	System.out.println("legger til treningsokt");
     	QueryFactory query = new QueryFactory( this.conn );
     	nyTreningsoktTAB_txtFeil.setText("");
 
     	
        	try {
         	int ID = Integer.parseInt(this.nyTreningsoktTAB_txtFieldID.getText());
-        	String dato = this.nyTreningsoktTAB_txtFieldDato.getText();
-        	int varighet = Integer.parseInt(this.nyTreningsoktTAB_txtFieldVarighet.getText());
-        	int notatID = Integer.parseInt(this.nyTreningsoktTAB_txtFieldNotatID.getText());
-        	String formal = this.nyTreningsoktTAB_txtFieldFormal.getText();
-        	String opplevelse = this.nyTreningsoktTAB_txtFieldOpplevelse.getText();
-
-        	Notat notat = new Notat(notatID, formal, opplevelse);
-        	this.okt = new Treningsokt(ID, dato, varighet, notat);
+        	if (okter.stream().anyMatch(o -> o.getTreningsoktID() == ID)) {
+        		nyTreningsoktTAB_txtFeil.setText("TreningsøktID-en er tatt, velg ID=" + (okter.size()+1));
+        	}
+        	else {
+        		String dato = this.nyTreningsoktTAB_txtFieldDato.getText();
+            	int varighet = Integer.parseInt(this.nyTreningsoktTAB_txtFieldVarighet.getText());
+            	int notatID = Integer.parseInt(this.nyTreningsoktTAB_txtFieldNotatID.getText());
+            	if (notater.stream().anyMatch(n -> n.getNotatID()==notatID)) {
+            		nyTreningsoktTAB_txtFeil.setText("NotatID-en er tatt, velg ID=" + (okter.size()+1));
+            	}
+            	else {
+            		String formal = this.nyTreningsoktTAB_txtFieldFormal.getText();
+                	String opplevelse = this.nyTreningsoktTAB_txtFieldOpplevelse.getText();
+                	Notat notat = new Notat(notatID, formal, opplevelse);
+                	this.okt = new Treningsokt(ID, dato, varighet, notat);
+                	query.setNotat(notat);
+                	query.setTreningsokt(okt);
+                	nyTreningsoktTAB_txtFeil.setText("Treningsokt lagt til. Du kan nå legge inn ovelser");
+                	update();
+            	}
+            	
+            	
+        	}
         	
-        	
-       	query.setNotat(notat);
-        	query.setTreningsokt(okt);
 			
 		} catch (Exception e) {
-			nyTreningsoktTAB_txtFeil.setText("Ugyldige verdier, prÃ¸v igjen.");
+			nyTreningsoktTAB_txtFeil.setText("Ugyldige verdier, prov igjen.");
 		}
     	
     	
@@ -419,38 +443,42 @@ public class mainController {
 
     
     public void nyTreningsoktTAB_btnAddOvelseIOkt(ActionEvent event) throws SQLException {
-	    	System.out.println("legger til Ã¸velse for Ã¸kt");
+	    	System.out.println("legger til ovelse for okt");
 	    	QueryFactory query = new QueryFactory( this.conn );
 	    	nyTreningsoktTAB_txtFeil.setText("");
 				
       	try {
 	    	String navn = this.nyTreningsoktTAB_txtFieldNavn.getText();
-	    	int kilo = Integer.parseInt(this.nyTreningsoktTAB_txtFieldKilo.getText()); 
-	    	int reps = Integer.parseInt(this.nyTreningsoktTAB_txtFieldReps.getText()); 
-	    	int set = Integer.parseInt(this.nyTreningsoktTAB_txtFieldSet.getText()); 
+	    	if (!(ovelser.stream().anyMatch(o -> o.getNavn().equals(navn)))) {
+	    		nyTreningsoktTAB_txtFeil.setText("Øvelsen er ikke registrert. Registrer den først og prøv igjen");
+	    	}
+	    	else {
+	    		int kilo = Integer.parseInt(this.nyTreningsoktTAB_txtFieldKilo.getText()); 
+		    	int reps = Integer.parseInt(this.nyTreningsoktTAB_txtFieldReps.getText()); 
+		    	int set = Integer.parseInt(this.nyTreningsoktTAB_txtFieldSet.getText()); 
+		    	
+		    	List<Integer> performance = new ArrayList<Integer>();
+		    	performance.add(kilo);
+		    	performance.add(reps);
+		    	performance.add(set);
+
+			//unÃ¸dvendig, kan vel vÃ¦re null
+			Apparat apparat = new Apparat("Stativ", "test");
+			OvelseGruppe gruppe = new OvelseGruppe("Armer");
+			
+			
+			//denne kan brukes selv om ovelsen er uten apparat bruker bare superklasse-felter
+			OvelseMedApparat ovelse = new OvelseMedApparat(navn,gruppe, apparat, performance);
+			
+			//push to db
+			query.setOvelseITreningsokt(this.okt, ovelse);
+			nyTreningsoktTAB_txtFeil.setText("Øvelsen ble lagt til i treningsøkten. Du kan legge til flere");
+	    	}
 	    	
-	    	List<Integer> performance = new ArrayList<Integer>();
-	    	performance.add(kilo);
-	    	performance.add(reps);
-	    	performance.add(set);
-	    	
-	
-	    		
-		
-		//unÃ¸dvendig, kan vel vÃ¦re null
-		Apparat apparat = new Apparat("Stativ", "test");
-		OvelseGruppe gruppe = new OvelseGruppe("Armer");
-		
-		
-		//denne kan brukes selv om ovelsen er uten apparat bruker bare superklasse-felter
-		OvelseMedApparat ovelse = new OvelseMedApparat(navn,gruppe, apparat, performance);
-		
-		//push to db
-		query.setOvelseITreningsokt(this.okt, ovelse);
 		
 
 		} catch (Exception e) {
-			nyTreningsoktTAB_txtFeil.setText("Ugyldige verdier, prÃ¸v igjen.");
+			nyTreningsoktTAB_txtFeil.setText("Ugyldige verdier, prov igjen.");
 		}
     	
     	
@@ -562,6 +590,33 @@ public class mainController {
     		
             //setter liste
             ObservableList<Treningsokt> obs2 = FXCollections.observableArrayList();
+            seTreningsokterTAB_tableViewOkter.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+				@Override
+				public void handle(MouseEvent event) {
+					final Stage dialog = new Stage();
+	                dialog.initModality(Modality.APPLICATION_MODAL);
+	                dialog.initOwner(seTreningsokterTAB_tableViewOkter.getScene().getWindow());
+	                VBox dialogVbox = new VBox(20);
+	                Treningsokt okt = seTreningsokterTAB_tableViewOkter.getSelectionModel().getSelectedItem();
+	                dialogVbox.getChildren().add(new Text("Øvelser i Treningsøkt med ID: " + okt.getTreningsoktID()));
+	                Text text = new Text("  | Øvelse | Øvelsegruppe | Kg | Sets | Reps |");
+	                text.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+	                dialogVbox.getChildren().add(text);
+	                Text line = new Text("  ---------------------------------------------");
+	                line.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+	                dialogVbox.getChildren().add(line);
+					for (Ovelse ovelse : okt.getOvelser()) {
+						 dialogVbox.getChildren().add(new Text(String.format("  | %s | %s | %s | %s | %s |", 
+								 ovelse.getNavn(), ovelse.getOvelsegruppe().getNavn(), ovelse.getKilo(), ovelse.getSets(), ovelse.getReps())));
+					}
+	                Scene dialogScene = new Scene(dialogVbox, 500, 400);
+	                dialog.setScene(dialogScene);
+	                dialog.show();
+					
+				}
+            	
+            });
 
             for (Treningsokt okt : okter ) {
            	 	obs2.add(okt);
@@ -620,17 +675,15 @@ public class mainController {
     @FXML
     private Text seResultatloggTAB_txtFeil;
     
-//    @FXML 
-//    private ProgressBar progressbar;
-    
     @FXML
-    private ProgressBar progressbar;
+    private Text txt_henter_okter;
+    
     
     public void seResultatloggTAB_btnVisResultatlogg(ActionEvent event) throws Exception {
     	QueryFactory query = new QueryFactory( this.conn );
     	seResultatloggTAB_txtFeil.setText("");
-
-
+    	txt_henter_okter.setVisible(true);
+    	
     	System.out.println("ser resultatlogg");
     	
       	try {
@@ -651,21 +704,16 @@ public class mainController {
   
         //	______input ferdig___
         ObservableList<LoggCell> obs2 = FXCollections.observableArrayList();
-        double i = 0.0;
 
     	if (valgt2 == null) {
     		for (Ovelse o : this.ovelser) {
-    			
-    	    	progressbar.setProgress(Double.parseDouble(Double.toString(i).substring(0,3)));
     			List<Ovelse> ovelser = query.getResultatLogg(o.getNavn(), start, slutt);
     			 for (Ovelse ov : ovelser ) {
     				 
     	        	 obs2.add( new LoggCell(ov.getNavn(), ov.getKilo(), ov.getReps(), ov.getSets())  );
     	         }
-    			 i += 1/(double)this.ovelser.size();
-    			 System.out.println(i);
     		}
-    		
+ 
     	}
     	
     	else {
@@ -689,6 +737,8 @@ public class mainController {
 			e.printStackTrace();
 			seResultatloggTAB_txtFeil.setText("Ugyldige verdier, prÃ¸v igjen.");
 		}
+      	
+      	txt_henter_okter.setVisible(false);
     }
     
     
