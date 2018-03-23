@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
-
 public class QueryFactory {
 	
 
@@ -61,6 +59,7 @@ public class QueryFactory {
 		statement.executeUpdate(sql);
 	}
 	
+	
 	public void setTreningsokt(Treningsokt okt) throws SQLException {
 		Statement statement = conn.createStatement();
 		String sql = String.format("insert into Treningsokt values ('%s', '%s', '%s', '%s')", okt.getTreningsoktID(), okt.getDate(), okt.getVarighet(), okt.getNotat().getNotatID());
@@ -74,7 +73,7 @@ public class QueryFactory {
 		statement.executeUpdate(sql);
 	}
 	
-	
+
 //-------------------------- GET-METODER ---------------------------------
 	
 	// Krav 2: Info om n siste gjennomførte treningsokter
@@ -264,6 +263,19 @@ public class QueryFactory {
 			}
 		}
 		return null;
+	}
+	
+	public List<Apparat> getAlleApparater() throws SQLException {
+		Statement statement = conn.createStatement();
+		String sql = String.format("select * from Apparat");
+		ResultSet rs = statement.executeQuery(sql);
+		List<Apparat> alleApparater = new ArrayList<>();
+		while (rs.next()) {
+				Apparat a = new Apparat(rs.getString("navn"), rs.getString("beskrivelse"));
+				alleApparater.add(a);
+		}
+		return alleApparater;
+		
 	}
 	
 	
