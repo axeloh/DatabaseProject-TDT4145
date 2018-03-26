@@ -2,6 +2,7 @@ package ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -149,6 +150,7 @@ public class mainController {
     	
     	txt_henter_okter.setVisible(false);
     	
+    	progressbar.setVisible(false);
 	}
 	
 	public void initialize() throws SQLException {
@@ -678,6 +680,10 @@ public class mainController {
     @FXML
     private Text txt_henter_okter;
     
+    @FXML
+    private ProgressBar progressbar;
+    
+    
     
     public void seResultatloggTAB_btnVisResultatlogg(ActionEvent event) throws Exception {
     	QueryFactory query = new QueryFactory( this.conn );
@@ -699,21 +705,41 @@ public class mainController {
         if (slutt.length() == 0) {
         	slutt = "3000-01-01 00:00:00";
         }
-        	
-//        	______input ___
-  
-        //	______input ferdig___
+        
+        
+        final String start_final = start;
+        final String slutt_final = slutt;
         ObservableList<LoggCell> obs2 = FXCollections.observableArrayList();
-
+        
+       // Creating task that will be done in different thread, in order to make the progressbar update continuous 
+       final Task<Void> task = new Task<Void>() {
+    	   int i = 1;
+			@Override
+			protected Void call() throws Exception {
+	    		for (Ovelse o : ovelser) {
+	    			updateProgress(i, ovelser.size());
+	    			List<Ovelse> ovelser2 = query.getResultatLogg(o.getNavn(), start_final, slutt_final);
+	    			 for (Ovelse ov : ovelser2 ) {
+	    	        	 obs2.add( new LoggCell(ov.getNavn(), ov.getKilo(), ov.getReps(), ov.getSets()));
+	    	         }
+	    			 i++;
+	    		}
+				return null;
+			}};
+       
+		// Only if the user wants all the ovelser we use the progressbar and start the thread
     	if (valgt2 == null) {
-    		for (Ovelse o : this.ovelser) {
-    			List<Ovelse> ovelser = query.getResultatLogg(o.getNavn(), start, slutt);
-    			 for (Ovelse ov : ovelser ) {
-    				 
-    	        	 obs2.add( new LoggCell(ov.getNavn(), ov.getKilo(), ov.getReps(), ov.getSets())  );
-    	         }
-    		}
- 
+    		progressbar.setVisible(true);
+    		progressbar.progressProperty().bind(task.progressProperty());
+    		progressbar.setStyle("-fx-accent: blue;");
+    		progressbar.progressProperty().addListener(observable -> {
+    			if (progressbar.getProgress() >= 1 - 0.0000005) {
+    				progressbar.setStyle("-fx-accent: forestgreen;");
+    			}
+    		});
+    		Thread th = new Thread(task);
+    		th.setDaemon(true);
+    		th.start();
     	}
     	
     	else {
