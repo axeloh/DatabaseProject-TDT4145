@@ -2,67 +2,68 @@
 
 i) En oversikt over hvilke klasser som finnes i programmet deres og en
 tilhørende beskrivelse av hvilken oppgave hver klasse løser.
+
 Apparat.java
--
-For å opprette apparat-objekter. Setter nødvendige variabler og har gettere og
+- For å opprette apparat-objekter. Setter nødvendige variabler og har gettere og
 settere for disse.
+
 DBConnection.java
--
-Klasse for å sette opp og koble til databasen.
+- Klasse for å sette opp og koble til databasen.
+
 Main.java
--
-Har ingen praktisk funksjon. Kun en hjelpeklasse vi har brukt for å teste core
+- Har ingen praktisk funksjon. Kun en hjelpeklasse vi har brukt for å teste core
 underveis.
+
 Notat.java
--
-For å opprette notat-objekter. Består av en ID, et treningsformål og en beskrivelse av
+- For å opprette notat-objekter. Består av en ID, et treningsformål og en beskrivelse av
 hvordan treningsøkten opplevdes.  Har gettere og settere for disse.
+
 Ovelse.java
--
-For å opprette øvelse-objekter. Dette er en abstrakt klasse, fordi en øvelse enten må
+-For å opprette øvelse-objekter. Dette er en abstrakt klasse, fordi en øvelse enten må
 være med et apparat, eller uten et apparat. Inneholder alle felles felter, gettere og
 settere.
+
 OvelseGruppe.java
--
-For å opprette øvelsesgruppe-objekter. Setter nødvendige variabler og har gettere og
+- For å opprette øvelsesgruppe-objekter. Setter nødvendige variabler og har gettere og
 settere for disse.
+
 OvelseMedApparat.java
--
-For å opprette øvelse med apparat-objekter. Her vil ekstra felter bli lagt til. Har
+- For å opprette øvelse med apparat-objekter. Her vil ekstra felter bli lagt til. Har
 gettere og settere for disse.
+
 OvelseUtenApparat.java
--
-For å opprette øvelse uten apparat-objekter. Her vil ekstra felter bli lagt til. Har
+- For å opprette øvelse uten apparat-objekter. Her vil ekstra felter bli lagt til. Har
 gettere og settere for disse.
+
 QueryFactory.java
--
-Klassen som inneholder alle spørringene til databasen. Forespørsler fra brukeren
+- Klassen som inneholder alle spørringene til databasen. Forespørsler fra brukeren
 oversettes til sql-spørringer som databasen forstår. Her har vi en rekke gettere og
 settere for de forskjellige objektene det er mulig å lage og hente informasjon om
 (apparat, øvelse, treningsøkter osv osv). Det er også en del hjelpemetoder som blir
 benyttet i gettere og i mainControlleren. Settere tar inn java-objekter og lagrer den
 tilhørende dataen i tabellene i databasen, gettere henter ut allerede eksisterende
 data fra databasen og returnerer java-objekter.
-Treningsokt.java
--
-For å opprette treningsøkt-objekter.  Setter nødvendige variabler og har gettere og
-settere for disse.
-App.java
--
-Starter applikasjonen.
-mainController.java
--
-Forbinder brukergrensesnittet med core-klassene. Oppretter og lagrer/henter og viser
-data alt ettersom hva brukeren velger. All lagring og henting skjer via QueryFactory.
 
+Treningsokt.java
+- For å opprette treningsøkt-objekter.  Setter nødvendige variabler og har gettere og
+settere for disse.
+
+App.java
+- Starter applikasjonen.
+
+mainController.java
+- Forbinder brukergrensesnittet med core-klassene. Oppretter og lagrer/henter og viser
+data alt ettersom hva brukeren velger. All lagring og henting skjer via QueryFactory.
 En rekke sjekker er lagt inn for å sikre gyldig tilstand i databasen. F. eks. om man vil
 legge til et apparat kan ikke apparatet finnes fra før, om man vil legge til en øvelse
 kan ikke øvelsen finnes fra før av. Brukeren får tilbakemelding i det grafiske
 grensesnittet om forespørslene er gyldige eller ikke. Dersom forespørselen er gyldig
 sendes den videre til QueryFactory som enten lagrer eller henter data i databasen.
+
 welcome.fxml
 -
-Brukergrensensnittet er definert her. Laget i SceneBuilder.
+- Brukergrensensnittet er definert her. Laget i SceneBuilder.
+
 ii) En oversikt over hvilke use cases som er løst og hvordan de er realisert i
 programmet.
 1.
