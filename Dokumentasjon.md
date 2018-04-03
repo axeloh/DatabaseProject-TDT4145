@@ -1,6 +1,6 @@
 # Treningsdagbok-App dokumentasjon
 
-i) En oversikt over hvilke klasser som finnes i programmet deres og en
+i) En oversikt over hvilke klasser som finnes i programmet og en
 tilhørende beskrivelse av hvilken oppgave hver klasse løser.
 -
 Apparat.java
