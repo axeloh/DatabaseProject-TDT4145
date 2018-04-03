@@ -2,7 +2,7 @@
 
 i) En oversikt over hvilke klasser som finnes i programmet deres og en
 tilhørende beskrivelse av hvilken oppgave hver klasse løser.
-
+-
 Apparat.java
 - For å opprette apparat-objekter. Setter nødvendige variabler og har gettere og
 settere for disse.
